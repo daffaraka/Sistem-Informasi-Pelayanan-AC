@@ -4,8 +4,8 @@
 <div class="container">
     <div class="row">
         @foreach ($transaksiUser as $transaksi)
-            <div class="col-lg-10 px-0 my-1">
-                <div class="card rounded-0">
+            <div class="col-lg-10 px-0 my-1 ">
+                <div class="card rounded-0 bg-light">
                     <div class="row p-2">
                         <div class="col-md-3">
                             <div class="card rounded-0 text-center">
@@ -17,8 +17,8 @@
                                     </h6>
 
                                 </div>
-                                <div class="card-footer px-0">
-                                    <span>Status</span>
+                                <div class="card-footer px-0 {{$transaksi->status =='AKTIF' ? 'bg-light' : ($transaksi->status == 'Diterima' ? 'bg-primary' : 'bg-danger') }}">
+                                    <h6 class="fw-bold">{{$transaksi->status}}</h6>
                                 </div>
                             </div>
                         </div>
@@ -31,13 +31,13 @@
                             <span>{{ $transaksi->waktu_kedatangan }}</span> <br>
                             <div class="mt-2 d-flex justify-content-end">
                                 @if ($transaksi->bukti_pembayaran == null)
-                                    <a href="{{route('bukti-pembayaran',$transaksi->id_transaksi)}}" class="btn btn-sm btn-primary">Upload Bukti</a>
+                                    <a href="{{route('upload-pembayaran',$transaksi->id_transaksi)}}" class="btn btn-sm btn-outline-primary">Lengkapi Pembayaran</a>
                                 @else
-                                    <div class="btn btn-sm btn-primary">Lihat Bukti</div>
+                                    <a href="#" class="btn btn-sm btn-primary">Beri Review</a>
                                 @endif
 
                                 <a href="{{route('user.detailTransaksi-user',$transaksi->id_transaksi)}}" class="btn btn-sm btn-warning mx-1">Detail</a>
-                                <div class="btn btn-sm btn-danger">Hapus</div>
+                                <div class="btn btn-sm btn-danger">Batalkan</div>
                             </div>
 
                         </div>

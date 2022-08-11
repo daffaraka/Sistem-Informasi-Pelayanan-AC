@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Layanan;
 use App\Models\Pemesanan;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
@@ -16,6 +17,10 @@ class TransaksiController extends Controller
         
         // dd($request->all());
         
+        $id_layanan = Layanan::where('nama_layanan',$request->layanan)->value('id_layanan');
+
+   
+
         $transaksiAttr = [];
         $transaksiAttr['alamat'] = $request->alamat;
         $transaksiAttr['jumlah_ac'] = $request->jumlah_ac;
@@ -27,7 +32,9 @@ class TransaksiController extends Controller
         $transaksiAttr['tanggal_kedatangan'] = $request->tanggal_kedatangan;
         $transaksiAttr['waktu_kedatangan'] = $request->waktu_kedatangan;
         $transaksiAttr['id_user'] = Auth::user()->id;
-        $transaksiAttr['id_layanan'] = 1;
+        $transaksiAttr['status'] = 'AKTIF';
+
+        $transaksiAttr['id_layanan'] = $id_layanan;
 
         $transaksi = Transaksi::create($transaksiAttr);
       
@@ -40,16 +47,36 @@ class TransaksiController extends Controller
     {
         $detailTransaksi = Transaksi::with('Layanan')->find($id);
         
-        return view('clients.home.pembayaran.pembayaran',compact('detailTransaksi'));
+        return view('clients.dashboard-user.pembayaran.pembayaran',compact('detailTransaksi'));
     }
+
+    public function pilih_metode($id,Request $request)
+    {
+       
+        $detailTransaksi = Transaksi::find($id);
+        $detailTransaksi->update(
+            ['metode_pembayaran' => $request->metode_pembayaran]
+        );
+
+       return redirect()->route('upload-pembayaran',['id'=>$detailTransaksi->id_transaksi]);
+    }
+
 
 
 
     public function uploadBuktiPembayaran($id)
     {
         $transaksi = Transaksi::find($id);
+
+        if (!$transaksi->metode_pembayaran)
+        {
+            return redirect()->route('pembayaran',['id'=>$transaksi->id_transaksi]);
+        } else {
+            return  view('clients.dashboard-user.pembayaran.lengkapi-pembayaran',compact('transaksi'));
+        }
+
+      
        
-        return view('clients.dashboard-user.pembayaran.lengkapi-pembayaran',compact('transaksi'));
     }
 
     public function storeBuktiPembayaran($id, Request $request)

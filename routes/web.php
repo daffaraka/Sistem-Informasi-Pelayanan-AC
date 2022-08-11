@@ -8,6 +8,7 @@ use App\Http\Controllers\LayananController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UlasanController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,34 +29,39 @@ Route::get('/', function () {
 })->name('beranda');
 
 Route::get('/isi-freon', [LayananController::class,'isi_freon'])->name('layanan.isi-freon');
-Route::get('/service-ac', [LayananController::class,''])->name('layanan.service-ac');
-Route::get('/cuci-ac', function () {
-    return view('clients.home.client-index');
-})->name('layanan.cuci-ac');
-Route::get('/cuci-besar-ac', function () {
-    return view('clients.home.client-index');
-})->name('layanan.cuci-besar-ac');
-Route::get('/bongkar-pasang-ac', function () {
-    return view('clients.home.client-index');
-})->name('layanan.bongkar-pasang-ac');
+Route::get('/service-ac', [LayananController::class,'service_ac'])->name('layanan.service-ac');
+Route::get('/cuci-ac', [LayananController::class,'cuci_ac'])->name('layanan.cuci-ac');
+Route::get('/cuci-besar-ac', [LayananController::class,'cuci_besar_ac'])->name('layanan.cuci-besar-ac');
+Route::get('/bongkar-pasang-ac', [LayananController::class,'bongkar_pasang_ac'])->name('layanan.bongkar-pasang-ac');
+
 
 Route::post('/buat_transaksi',[TransaksiController::class,'buat_transaksi'])->name('buat_transaksi');
 Route::get('/pembayaran/{id}',[TransaksiController::class,'pembayaran'])->name('pembayaran');
-Route::post('/lengkapi-pembayaran/{id}',[TransaksiController::class,'lengkapiPembayaran'])->name('lengkapi-pembayaran');
-Route::get('/lengkapi-pembayaran/{id}/bukti-pembayaran',[TransaksiController::class,'uploadBuktiPembayaran'])->name('bukti-pembayaran');
+Route::post('/lengkapi-pembayaran/{id}',[TransaksiController::class,'pilih_metode'])->name('pilih_metode');
+Route::get('/lengkapi-pembayaran/{id}/bukti-pembayaran',[TransaksiController::class,'uploadBuktiPembayaran'])->name('upload-pembayaran');
 Route::post('/lengkapi-pembayaran/{id}/upload',[TransaksiController::class,'storeBuktiPembayaran'])->name('storeBuktiPembayaran');
 
 Route::get('/pengaturan-akun',[DashboardUserController::class,'pengaturan_akun'])->name('user.pengaturan-akun');
 Route::get('/transaksi',[DashboardUserController::class,'transaksi_user'])->name('user.transaksi-user');
 Route::get('/detail-transaksi/{id}',[DashboardUserController::class,'detailTransaksi'])->name('user.detailTransaksi-user');
 
-Route::prefix('dashboard')->group(function () {
+// Review
+Route::get('/review/{id}')
+
+Route::prefix('dashboard')->middleware(['auth','role:Admin'])->group(function () {
     Route::get('/', function () {
         return view('dashboard.dashboard-index');
     })->name('dashboard');
     Route::get('layanan', [DaftarLayananController::class,'index'])->name('daftar_layanan');
 
     Route::get('daftar-transaksi',[DashboardAdminController::class,'daftarTransaksi'])->name('admin.daftarTransaksi');
+    Route::get('daftar-transaksi/detail/{id}',[DashboardAdminController::class,'detailTransaksi'])->name('admin.detailTransaksi');
+    Route::get('daftar-transaksi/detail/{id}',[DashboardAdminController::class,'detailTransaksi'])->name('admin.detailTransaksi');
+    Route::get('daftar-transaksi/detail/{id}/tolak',[DashboardAdminController::class,'tolakTransaksi'])->name('admin.tolakTransaksi');
+    Route::get('daftar-transaksi/detail/{id}/terima',[DashboardAdminController::class,'terimaTransaksi'])->name('admin.terimaTransaksi');
+
+
+
     Route::get('ulasan',[UlasanController::class,'index'])->name('ulasan');
     // Route::get('riwayat-pemesanan',[]);
 

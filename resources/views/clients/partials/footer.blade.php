@@ -4,7 +4,7 @@
             <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-4 mb-md-0 mb-4">
-                        <h4 class="footer-heading"> Bengkel Teknik Selamat</h4>
+                        <h4 class="footer-heading"> Bengkel Slamet Teknik</h4>
                         <ul class="list-unstyled">
                             {{-- <li><a href="#" class="py-1 d-block">Jeans</a></li>
                             <li><a href="#" class="py-1 d-block">Jumpers</a></li>

@@ -3,6 +3,7 @@
 @section('content-user-title', 'Lengkapi Transaksi Anda')
 <div class="container px-0">
     <form action="{{route('storeBuktiPembayaran',$transaksi->id_transaksi)}}" method="POST" enctype="multipart/form-data">
+        <p>Pastikan anda telah mengirim gambar dari bukti pembayaran untuk dikonfirmasi lebih lanjut</p>
         @csrf
         <div class="mb-3 d-flex justify-content-center">
             <img class="img-thumbnail w-50 mb-3" src="{{ asset('image/aset/image-preview.png') }}" alt="" id="gambar-sebelum-upload">

@@ -33,13 +33,13 @@
                         <span class="hide-menu">Review/Ulasan</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
+                {{-- <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="fontawesome.html"
                         aria-expanded="false">
                         <i class="far fa-star"></i>
                         <span class="hide-menu">Testimoni</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="fontawesome.html"
                         aria-expanded="false">
@@ -47,6 +47,15 @@
                         <span class="hide-menu">Riwayat Pemesanan</span>
                     </a>
                 </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('user.index')}}"
+                        aria-expanded="false">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <span class="hide-menu">Manajemen Akun</span>
+                    </a>
+                </li>
+
             
             </ul>
 

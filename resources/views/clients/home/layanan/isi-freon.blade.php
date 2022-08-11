@@ -9,7 +9,7 @@
                     @csrf
                     <div class="mb-3">
                         <div class="form-label">Jenis Jasa</div>
-                        <input type="text" class="form-control" name="Isi reon" value="Isi Freon" disabled>
+                        <input type="text" class="form-control" name="layanan" value="Isi Freon" readonly>
                     </div>
                     <div class="mb-3">
                         <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">

@@ -6,30 +6,36 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     public function index(Request $request)
     {
+      
         $data = User::orderBy('id','DESC')->paginate(5);
-        return view('admin.dashboard.users.users-index',compact('data'))
+        return view('dashboard.admin.users.users-index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     public function create()
     {
         $roles = Role::pluck('name','name')->all();
-        return view('admin.dashboard.users.users-create',compact('roles'));
+        return view('dashboard.admin.users.users-create',compact('roles'));
     }
     
   
     public function store(Request $request)
     {
+
+        // dd($request->all());
         $this->validate($request, [
-            'name' => 'required',
+            'username' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
+            'no_hp' => 'required|unique:users,no_hp',
+            'alamat' => 'required',
             'roles' => 'required'
         ]);
     
@@ -47,7 +53,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return view('admin.dashboard.user.user-show',compact('user'));
+        return view('dashboard.admin.users.users-show',compact('user'));
     }
     
   
@@ -57,14 +63,14 @@ class UserController extends Controller
         $this->data['roles'] = Role::pluck('name','name')->all();
         $this->data['userRole'] = $this->data['user']->roles->pluck('name','name')->all();
     
-        return view('admin.dashboard.user.user-edit',$this->data);
+        return view('dashboard.admin.users.users-edit',$this->data);
     }
     
 
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'username' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'same:confirm-password',
             'roles' => 'required'

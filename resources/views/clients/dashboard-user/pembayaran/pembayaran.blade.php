@@ -11,7 +11,7 @@
 
                 <div class="col-lg-8 my-3 px-2 pe-5 py-3 border-1">
 
-                    <form action="{{ route('lengkapi-pembayaran',$detailTransaksi->id_transaksi) }}" method="POST">
+                    <form action="{{ route('pilih_metode',$detailTransaksi->id_transaksi) }}" method="POST">
                         <h5 class="card-title">Pilih Metode Pembayaran</h5>
                         <hr>
                         @csrf
@@ -37,7 +37,7 @@
                             </label>
                         </div>
                         <div class="d-grid gap-2 mt-5">
-                            <button class="btn btn-primary" type="submit">Menuju pembaayaran </button>
+                            <button class="btn btn-primary" type="submit">Menuju pembayaran </button>
                         </div>
                     </form>
 

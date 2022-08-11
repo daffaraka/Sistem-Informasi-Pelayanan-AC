@@ -4,12 +4,12 @@
     <div class="container p-5">
         <div class="row">
             <div class="col-lg-6">
-                <h1 class="fw-bold text-uppercase">Isi Freon</h1>
-                <form method="post" action="{{ route('sewaLayanan') }}">
+                <h1 class="fw-bold text-uppercase">Cuci Besar Ac</h1>
+                <form method="post" action="{{ route('buat_transaksi') }}">
                     @csrf
                     <div class="mb-3">
                         <div class="form-label">Jenis Jasa</div>
-                        <input type="text" class="form-control" name="Isi reon" value="Isi Freon" disabled>
+                        <input type="text" class="form-control" name="layanan" value="Cuci Besar Ac" readonly>
                     </div>
                     <div class="mb-3">
                         <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">

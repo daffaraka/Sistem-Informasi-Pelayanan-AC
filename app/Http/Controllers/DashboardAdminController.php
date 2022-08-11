@@ -17,11 +17,10 @@ class DashboardAdminController extends Controller
         if (request()->ajax()) {
 
             return DataTables::of($transaksi)->addColumn('action', function ($data) {
-                $button = '<a href="daftar-transaksi/edit/'.$data->id_transaksi.' " data-toggle="tooltip"  data-id="' . $data->id_transaksi . '" data-original-title="Edit" class="edit btn btn-sm btn-warning btn-xs edit-post"><i class="far fa-edit"></i> Edit</a>';
+                $button = '<a href="daftar-transaksi/detail/'.$data->id_transaksi.' " data-toggle="tooltip"  data-id="' . $data->id_transaksi . '" data-original-title="Edit" class="edit btn btn-sm btn-warning edit-post text-dark"><i class="far fa-edit"></i> Detail</a>';
                 $button .= '&nbsp;&nbsp;';
                 // $button .= '<button type="button" name="detail" id="'.$data->id.'" class="detail btn btn-info btn-xs"><i class="fas fa-info-circle"></i> Detail</button>';
                 // $button .= '&nbsp;&nbsp;';
-                $button .= '<a href="daftar-transaksi/delete/'.$data->id_transaksi.'" name="delete" id="' . $data->id_transaksi . '" class="delete btn btn-danger btn-xs"><i class="far fa-trash-alt"></i> Delete</a>';
                 return $button;
             })
                 ->rawColumns(['action'])
@@ -32,8 +31,37 @@ class DashboardAdminController extends Controller
         return view('dashboard.admin.daftar transaksi.transaksi-index');
     }
 
-    public function daftarReview()
+    public function detailTransaksi($id)
     {
-        # code...
+        $transaksi = Transaksi::find($id);
+        
+        return view('dashboard.admin.daftar transaksi.transaksi-show',compact('transaksi'));
     }
+
+
+    public function tolakTransaksi($id)
+    {
+        $transaksi = Transaksi::find($id);
+        $transaksi->update(
+            [
+                'status' => 'Ditolak',
+            ]
+        );
+
+        return redirect()->route('admin.detailTransaksi',['id'=>$transaksi->id_transaksi]);
+    }
+
+    public function terimaTransaksi($id)
+    {
+        $transaksi = Transaksi::find($id);
+        $transaksi->update(
+            [
+                'status' => 'Diterima',
+            ]
+        );
+
+        return redirect()->route('admin.detailTransaksi',['id'=>$transaksi->id_transaksi]);
+    }
+
+ 
 }
