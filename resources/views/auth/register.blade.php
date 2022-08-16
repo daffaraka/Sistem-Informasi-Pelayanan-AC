@@ -13,18 +13,39 @@
             @csrf
 
             <!-- Name -->
-            <div>
-                <x-label for="name" :value="__('Name')" />
+            <div class="mt-4">
+                <x-label for="name" :value="__('Username')" />
 
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                <x-input id="name" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required autofocus />
             </div>
 
+            <div class="mt-4">
+                <x-label for="name" :value="__('Nama Lengkap')" />
+
+                <x-input id="name" class="block mt-1 w-full" type="text" name="nama_lengkap" :value="old('nama_lengkap')" required autofocus />
+            </div>
+
+
+            <div class="mt-4">
+                <x-label for="name" :value="__('Nomor Hp')" />
+
+                <x-input id="name" class="block mt-1 w-full" type="number" name="no_hp" :value="old('no_hp')" required autofocus />
+            </div>
+
+            <div class="mt-4"> 
+                <x-label for="name" :value="__('Alamat')" />
+
+                <x-input id="name" class="block mt-1 w-full" type="text" name="alamat" :value="old('alamat')" required autofocus />
+            </div>
+
+            
             <!-- Email Address -->
             <div class="mt-4">
                 <x-label for="email" :value="__('Email')" />
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
+
 
             <!-- Password -->
             <div class="mt-4">

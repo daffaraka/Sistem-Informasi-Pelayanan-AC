@@ -7,7 +7,6 @@
                 <th class="px-2">Penerima Layanan</th>
                 <th class="px-2">Alamat</th>
                 <th class="px-2">Jml Ac</th>
-                <th class="px-2">Type </th>
                 <th class="px-2">Bukti Pembayaran</th>
                 <th class="px-2">Action</th>
             </tr>
@@ -59,9 +58,6 @@
                     },
                     {
                         data: 'jumlah_ac',
-                    },
-                    {
-                        data: 'type_rumah',
                     },
                     {
                         data: 'bukti_pembayaran',

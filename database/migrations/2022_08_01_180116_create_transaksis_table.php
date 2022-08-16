@@ -18,7 +18,6 @@ class CreateTransaksisTable extends Migration
             $table->unsignedBigInteger('id_user');
             $table->string('alamat');
             $table->bigInteger('jumlah_ac');
-            $table->string('type_rumah');
             $table->bigInteger('nomor_hp');
             $table->unsignedBigInteger('id_layanan');
             $table->string('penerima_layanan');

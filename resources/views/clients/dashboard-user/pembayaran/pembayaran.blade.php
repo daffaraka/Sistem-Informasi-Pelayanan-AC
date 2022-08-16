@@ -52,14 +52,14 @@
                             <hr>
                             <h5>{{ $detailTransaksi->Layanan->nama_layanan }}</h5>
                             <p>
-                                <span>Jumlah AC</span> <br>
-                                <span>Type Rumah</span> <br>
-                                <span>Penerima Layanan</span> <br>
-                                <span>Nomor HP</span> <br>
+                                <span>{{$detailTransaksi->jumlah_ac}} buah AC</span> <br>
+                             
+                                <span>{{$detailTransaksi->penerima_layanan}}</span> <br>
+                                <span>{{$detailTransaksi->nomor_hp}}</span> <br>
                             </p>
                             <div class="form-group">
                                 <label for="my-textarea">Alamat</label>
-                                <textarea id="my-textarea" class="form-control w-75" name="" rows="3" disabled>Alamat</textarea>
+                                <textarea id="my-textarea" class="form-control w-75" name="" rows="3" disabled>{{$detailTransaksi->alamat}}</textarea>
                             </div>
     
     

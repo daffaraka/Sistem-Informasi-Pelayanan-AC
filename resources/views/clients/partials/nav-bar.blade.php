@@ -18,7 +18,6 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item link-dark" href="{{route('user.pengaturan-akun')}}">Pengaturan Akun</a></li>
                             <li><a class="dropdown-item link-dark" href="{{route('user.transaksi-user')}}">Pesanan anda</a></li>
-                            <li><a class="dropdown-item link-dark" href="#">Riwayat pemesanan</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>

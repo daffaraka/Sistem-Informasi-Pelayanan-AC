@@ -24,7 +24,6 @@ class TransaksiController extends Controller
         $transaksiAttr = [];
         $transaksiAttr['alamat'] = $request->alamat;
         $transaksiAttr['jumlah_ac'] = $request->jumlah_ac;
-        $transaksiAttr['type_rumah'] = $request->type_rumah;
         $transaksiAttr['nomor_hp'] = $request->nomor_hp;
         $transaksiAttr['penerima_layanan'] = $request->penerima_layanan;
         $transaksiAttr['biaya_jasa'] = $request->biaya_jasa;

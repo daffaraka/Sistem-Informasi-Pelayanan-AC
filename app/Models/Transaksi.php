@@ -16,7 +16,6 @@ class Transaksi extends Model
         'id_user',
         'alamat',
         'jumlah_ac',
-        'type_rumah',
         'nomor_hp',
         'id_layanan',
         'biaya_jasa',

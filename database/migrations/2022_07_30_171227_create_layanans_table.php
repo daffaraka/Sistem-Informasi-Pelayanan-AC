@@ -16,7 +16,9 @@ class CreateLayanansTable extends Migration
         Schema::create('layanans', function (Blueprint $table) {
             $table->bigIncrements('id_layanan');
             $table->string('nama_layanan');
+            $table->string('gambar_layanan');
             $table->string('deskripsi_layanan');
+            $table->integer('biaya_layanan');
             $table->timestamps();
         });
     }

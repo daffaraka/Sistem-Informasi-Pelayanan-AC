@@ -14,4 +14,19 @@ class ReviewController extends Controller
 
         return view('dashboard.admin.reviews.review-index');
    }
+
+   public function store($id, Request $request)
+   {
+        $id_transaksi = Transaksi::find($id);
+
+        Review::create(
+            [
+                'id_transaksi' => $id_transaksi->id_transaksi,
+                'comment' => $request->comment,
+                'rating' => $request->rating,
+            ]
+            );
+
+        return redirect()->route('user.detailTransaksi-user',['id'=>$id_transaksi->id_transaksi]);
+   }
 }

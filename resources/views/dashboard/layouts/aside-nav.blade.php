@@ -13,7 +13,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item ">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('daftar_layanan')}}"
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('layanan')}}"
                         aria-expanded="false">
                         <i class="fas fa-stream"></i>
                         <span class="hide-menu">Layanan Tersedia</span>

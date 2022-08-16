@@ -1,10 +1,11 @@
 @extends('dashboard.layout-dashboard')
 @section('content')
-    <a href="" class="btn btn-primary">Tambah Layanan</a>
+    <a href="{{route('layanan.create')}}" class="btn btn-primary">Tambah Layanan</a>
     <table id="data-table-list" class="table table-striped table-bordered text-start shadow">
         <thead>
             <tr>
                 <th class="px-2">#</th>
+                <th class="px-2">Gambar Layanan</th>
                 <th class="px-2">Nama Layanan</th>
                 <th class="px-2">Deskripsi Layanan</th>
                 <th class="px-2">Action</th>
@@ -12,17 +13,6 @@
         </thead>
         <tbody>
 
-            {{-- @foreach ($artist as $a)
-            <tr>
-                <td>{{$a->id_artist}}</td>
-                <td>{{$a->artist_name}}</td>
-                <td>{{$a->artist_dom}}</td>
-                <td>
-                    <a href="{{route('artist.edit',$a->id_artist)}}" class="btn btn-dark">Edit</a>
-                    <a href="{{route('artist.destroy',$a->id_artist)}}" class="btn btn-danger">Delete</a>
-                </td>
-            </tr>
-       @endforeach --}}
 
         </tbody>
     </table>
@@ -42,12 +32,19 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: "{{ route('daftar_layanan') }}",
+                    url: "{{ route('layanan') }}",
                     type: 'GET'
                 },
                 columns: [{
                         data: 'id_layanan',
 
+                    },
+                    {
+                        data : 'gambar_layanan',
+                        render: function(data, type, row, meta) {
+                            return '<img src="{{ asset('Gambar Layanan') }}/' + data +
+                                '" class="img-thumbnail border-0 " style="width:150px;" />';
+                        },
                     },
                     {
                         data: 'nama_layanan',
