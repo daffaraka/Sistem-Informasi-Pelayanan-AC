@@ -25,7 +25,9 @@ class Transaksi extends Model
         'status',
         'updated_by',
         'tanggal_kedatangan',
-        'waktu_kedatangan'
+        'waktu_kedatangan',
+        'garansi',
+        'id_teknisi'
     ];
 
     public function User()
@@ -36,6 +38,17 @@ class Transaksi extends Model
     public function Layanan()
     {
         return $this->belongsTo(Layanan::class,'id_layanan');
+
+    }
+
+    public function Teknisi()
+    {
+        return $this->belongsTo(Teknisi::class,'id_teknisi');
+    }
+
+    public function Ulasan()
+    {
+        return $this->hasOne(Ulasan::class,'id_review','id_transaksi');
 
     }
 }

@@ -27,6 +27,7 @@ class CreateTransaksisTable extends Migration
             $table->string('status');
             $table->date('tanggal_kedatangan');
             $table->time('waktu_kedatangan');
+            $table->date('garansi')->nullable();
             $table->string('updated_by');
             $table->timestamps();
 
@@ -34,6 +35,7 @@ class CreateTransaksisTable extends Migration
                 ->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('id_layanan')->references('id_layanan')->on('layanans')
                 ->onDelete('cascade')->onUpdate('cascade');
+           
         });
     }
 

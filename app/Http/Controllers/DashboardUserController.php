@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaksi;
+use App\Models\Ulasan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
@@ -10,10 +11,10 @@ use Yajra\DataTables\Facades\DataTables;
 class DashboardUserController extends Controller
 {
 
-    // public function __construct($id)
-    // {
-    //     $this->transaksi = Transaksi::find($id);
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
 
     public function pengaturan_akun()
@@ -26,7 +27,7 @@ class DashboardUserController extends Controller
     {
         $idUser = Auth::user()->id;
 
-        $transaksiUser = Transaksi::with(['User', 'Layanan'])->where('id_user', $idUser)->get();
+        $transaksiUser = Transaksi::with(['User', 'Layanan','Ulasan'])->where('id_user', $idUser)->get();
 
 
 
@@ -80,5 +81,41 @@ class DashboardUserController extends Controller
         }
 
         return  view('clients.home.pembayaran.lengkapi-pembayaran', ('transaksi'));
+    }
+
+    public function ulasan($id)
+    {
+        $transaksi = Transaksi::with('Layanan')->find($id);
+
+        return view('clients.dashboard-user.ulasan.ulasan-create',compact('transaksi'));
+    }
+
+
+    public function beri_ulasan(Request $request)
+    {
+        
+        // dd($request->all());
+        $transaksi = Transaksi::find($request->id_transaksi);
+        Ulasan::create($request->all());
+        $transaksi->update(
+            [
+                'status' => 'Selesai',
+            ]
+        );
+        return redirect()->route('user.transaksi-user');
+    }
+
+
+    public function batalkan($id)
+    {
+        $transaksi = Transaksi::find($id);
+        
+        $transaksi->update(
+            [
+                'status' => 'Dibatalkan',
+            ]
+            );
+
+        return redirect()->route('user.transaksi-user');
     }
 }

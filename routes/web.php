@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\TeknisiController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UlasanController;
 use App\Http\Controllers\UserController;
@@ -33,14 +34,18 @@ Route::get('/pembayaran/{id}',[TransaksiController::class,'pembayaran'])->name('
 Route::post('/lengkapi-pembayaran/{id}',[TransaksiController::class,'pilih_metode'])->name('pilih_metode');
 Route::get('/lengkapi-pembayaran/{id}/bukti-pembayaran',[TransaksiController::class,'uploadBuktiPembayaran'])->name('upload-pembayaran');
 Route::post('/lengkapi-pembayaran/{id}/upload',[TransaksiController::class,'storeBuktiPembayaran'])->name('storeBuktiPembayaran');
-
 Route::get('/pengaturan-akun',[DashboardUserController::class,'pengaturan_akun'])->name('user.pengaturan-akun');
 Route::get('/transaksi',[DashboardUserController::class,'transaksi_user'])->name('user.transaksi-user');
 Route::get('/detail-transaksi/{id}',[DashboardUserController::class,'detailTransaksi'])->name('user.detailTransaksi-user');
 
+Route::get('/ulasan/{id}',[DashboardUserController::class,'ulasan'])->name('user.ulasan');
+Route::post('/ulasan/{id}/beri-ulasan',[DashboardUserController::class,'beri_ulasan'])->name('user.beriUlasan');
+
+Route::post('/lengkapi-pembayaran/{id}/batal',[DashboardUserController::class,'batalkan'])->name('user.batalTransaksi');
+
 // Review
 Route::get('/review/{id}',[ReviewController::class,'buatReview'])->name('buat-review');
-Route::post('/review/{id}',[ReviewController::class,'store'])->name('upload-review');
+Route::post('/review/{id}/beri-ulasan',[ReviewController::class,'store'])->name('upload-review');
 
 Route::prefix('dashboard')->middleware(['auth','role:Admin'])->group(function () {
     Route::get('/', function () {
@@ -57,9 +62,18 @@ Route::prefix('dashboard')->middleware(['auth','role:Admin'])->group(function ()
     Route::get('daftar-transaksi',[DashboardAdminController::class,'daftarTransaksi'])->name('admin.daftarTransaksi');
     Route::get('daftar-transaksi/detail/{id}',[DashboardAdminController::class,'detailTransaksi'])->name('admin.detailTransaksi');
     Route::get('daftar-transaksi/detail/{id}',[DashboardAdminController::class,'detailTransaksi'])->name('admin.detailTransaksi');
-    Route::get('daftar-transaksi/detail/{id}/tolak',[DashboardAdminController::class,'tolakTransaksi'])->name('admin.tolakTransaksi');
-    Route::get('daftar-transaksi/detail/{id}/terima',[DashboardAdminController::class,'terimaTransaksi'])->name('admin.terimaTransaksi');
+    Route::post('daftar-transaksi/detail/{id}/tolak',[DashboardAdminController::class,'tolakTransaksi'])->name('admin.tolakTransaksi');
+    Route::get('daftar-transaksi/detail/{id}/pilih-teknisi',[DashboardAdminController::class,'pilihTeknisi'])->name('admin.pilihTeknisi');
+    Route::post('daftar-transaksi/detail/{id}/terima',[DashboardAdminController::class,'terimaTransaksi'])->name('admin.terimaTransaksi');
 
+
+    Route::get('teknisi', [TeknisiController::class,'index'])->name('teknisi');
+    Route::get('teknisi/create', [TeknisiController::class,'create'])->name('teknisi.create');
+    Route::post('teknisi/store', [TeknisiController::class,'store'])->name('teknisi.store');
+    Route::get('teknisi/edit/{id}', [TeknisiController::class,'edit'])->name('teknisi.edit');
+    Route::post('teknisi/update/{id}', [TeknisiController::class,'update'])->name('teknisi.update');
+    Route::get('teknisi/show/{id}', [TeknisiController::class,'show'])->name('teknisi.show');
+    Route::get('teknisi/delete/{id}', [TeknisiController::class,'destroy'])->name('teknisi.delete');
 
 
     Route::get('ulasan',[UlasanController::class,'index'])->name('ulasan');

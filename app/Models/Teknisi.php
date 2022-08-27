@@ -5,18 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Review extends Model
+class Teknisi extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id_review';
+    protected $primaryKey = 'id_teknisi';
 
     protected $fillable = 
-    [
-        'comment',
-        'rating',
-        'id_transaksi',
-    ]; 
+        [
+            'nama_teknisi',
+            'no_hp',
+        ];
 
 
     public function Transaksi()

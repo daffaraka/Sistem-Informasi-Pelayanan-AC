@@ -11,6 +11,11 @@ use PhpParser\Builder\Trait_;
 
 class TransaksiController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     
     public function buat_transaksi(Request $request)
     {
@@ -26,12 +31,12 @@ class TransaksiController extends Controller
         $transaksiAttr['jumlah_ac'] = $request->jumlah_ac;
         $transaksiAttr['nomor_hp'] = $request->nomor_hp;
         $transaksiAttr['penerima_layanan'] = $request->penerima_layanan;
-        $transaksiAttr['biaya_jasa'] = $request->biaya_jasa;
+        $transaksiAttr['biaya_jasa'] = $request->biaya_jasa * $request->jumlah_ac;
         $transaksiAttr['updated_by'] = 'Percobaan';
         $transaksiAttr['tanggal_kedatangan'] = $request->tanggal_kedatangan;
         $transaksiAttr['waktu_kedatangan'] = $request->waktu_kedatangan;
         $transaksiAttr['id_user'] = Auth::user()->id;
-        $transaksiAttr['status'] = 'AKTIF';
+        $transaksiAttr['status'] = 'Diajukan';
 
         $transaksiAttr['id_layanan'] = $id_layanan;
 
@@ -41,6 +46,8 @@ class TransaksiController extends Controller
         return redirect()->route('pembayaran',['id'=>$transaksi->id_transaksi]);
 
     }
+
+    
 
     public function pembayaran($id)
     {

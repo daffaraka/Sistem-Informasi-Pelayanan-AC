@@ -18,4 +18,9 @@ class Layanan extends Model
         'deskripsi_layanan',
         'biaya_layanan'
     ];
+
+    public function Ulasan()
+    {
+        return $this->hasMany(Ulasan::class,'id_review','id_layanan');
+    }
 }

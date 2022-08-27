@@ -1,12 +1,13 @@
 @extends('dashboard.layout-dashboard')
 @section('content')
+    <a href="{{ route('teknisi.create') }}" class="btn btn-primary">Tambah Teknisi</a>
     <table id="data-table-list" class="table table-striped table-bordered text-start shadow">
         <thead>
             <tr>
                 <th class="px-2">#</th>
-                <th class="px-2">Nama Layanan</th>
-                <th class="px-2 w-25">Rating Ulasan</th>
-                <th class="px-2">Commentar</th>
+                <th class="px-2">Nama Teknisi</th>
+                <th class="px-2">Contact Teknisi</th>
+                <th class="px-2">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -30,24 +31,21 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: "{{ route('ulasan') }}",
+                    url: "{{ route('teknisi') }}",
                     type: 'GET'
                 },
                 columns: [{
-                        data: 'id_review',
+                        data: 'id_teknisi',
 
                     },
                     {
-                        data: 'layanan.nama_layanan'
+                        data: 'nama_teknisi',
                     },
                     {
-                        data: 'rating',
-                        render: function(data, type, row, meta) {
-                            return data + '/5';
-                        }
+                        data: 'no_hp',
                     },
                     {
-                        data: 'comment',
+                        data: 'action',
                     },
                 ],
                 order: [

@@ -4,9 +4,12 @@
         <thead>
             <tr>
                 <th class="px-2">#</th>
+                <th class="px-2">Layanan</th>
                 <th class="px-2">Penerima Layanan</th>
                 <th class="px-2">Alamat</th>
                 <th class="px-2">Jml Ac</th>
+                <th class="px-2">Status</th>
+                <th class="px-2">Teknisi</th>
                 <th class="px-2">Bukti Pembayaran</th>
                 <th class="px-2">Action</th>
             </tr>
@@ -51,6 +54,9 @@
 
                     },
                     {
+                        data :'layanan.nama_layanan',
+                    },
+                    {
                         data: 'penerima_layanan',
                     },
                     {
@@ -58,6 +64,13 @@
                     },
                     {
                         data: 'jumlah_ac',
+                    },
+                    {
+                        data: 'status',
+                    },
+                    {
+                        data: 'teknisi.nama_teknisi',
+                        defaultContent : 'Transaksi belum selesai'
                     },
                     {
                         data: 'bukti_pembayaran',

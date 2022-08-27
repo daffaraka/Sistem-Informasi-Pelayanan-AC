@@ -3,7 +3,8 @@
 @section('content')
     <div class="container p-3">
         <div class="row flex-nowrap">
-            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 h-50">
+            {{-- <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 h-50">
+            </div> --}}
                 {{-- <a href="/" class="d-flex align-items-center pb-1 my-2 mb-md-0 me-md-auto text-decoration-none link-dark ">
                    <h4>  <span class="fs-5 d-none d-sm-inline fw-bold">Menu</span></h4> 
                 </a> --}}
@@ -31,7 +32,7 @@
                             </ul>
                         </div> 
                 </div> --}}
-            </div>
+            
 
            
             <div class="col py-2 px-5">

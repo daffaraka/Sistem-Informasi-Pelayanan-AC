@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Teknisi;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -11,7 +12,7 @@ class DashboardAdminController extends Controller
     
     public function daftarTransaksi()
     {
-        $transaksi = Transaksi::with('User')->get();
+        $transaksi = Transaksi::with(['User','Teknisi','Layanan'])->get();
 
       
         if (request()->ajax()) {
@@ -44,19 +45,38 @@ class DashboardAdminController extends Controller
         $transaksi = Transaksi::find($id);
         $transaksi->update(
             [
-                'status' => 'Ditolak',
+                'status' => 'Dibatalkan',
             ]
         );
 
         return redirect()->route('admin.detailTransaksi',['id'=>$transaksi->id_transaksi]);
     }
 
-    public function terimaTransaksi($id)
+
+    public function pilihTeknisi($id)
+    {
+
+        $transaksi = Transaksi::find($id);
+        $teknisi = Teknisi::all();
+
+        
+
+        if(count($teknisi) < 1) {
+            return redirect()->route('teknisi.create');
+        } else {
+            return view('dashboard.admin.daftar transaksi.transaksi-pilih-teknisi',compact(['transaksi','teknisi']));
+        }
+    }
+
+    public function terimaTransaksi($id, Request $request)
     {
         $transaksi = Transaksi::find($id);
+
+        // dd($request->all());
         $transaksi->update(
             [
                 'status' => 'Diterima',
+                'id_teknisi' => $request->id_teknisi,
             ]
         );
 

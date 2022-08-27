@@ -15,7 +15,7 @@
                         </ul>
                     </div>
                     <div class="col-md-4 mb-md-0 mb-4">
-                        <h6 class="footer-heading">Women</h6>
+                        {{-- <h6 class="footer-heading">Women</h6> --}}
                         <ul class="list-unstyled">
                             {{-- <li><a href="#" class="py-1 d-block">Dresses</a></li>
                             <li><a href="#" class="py-1 d-block">Jumpsuits</a></li>
@@ -27,7 +27,7 @@
                         </ul>
                     </div>
                     <div class="col-md-4 mb-md-0 mb-4">
-                        <h6 class="footer-heading">Kids</h6>
+                        {{-- <h6 class="footer-heading">Kids</h6> --}}
                         <ul class="list-unstyled">
                             {{-- <li><a href="#" class="py-1 d-block">Shirts</a></li>
                             <li><a href="#" class="py-1 d-block">T-shirts</a></li>

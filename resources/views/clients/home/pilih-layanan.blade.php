@@ -13,7 +13,7 @@
                     </div>
                  
                     <div class="mb-3">
-                        <div class="form-label">Perkiraan Biaya</div>
+                        <div class="form-label"> Biaya per Ac</div>
                         <input type="number" class="form-control" name="biaya_jasa" id="biaya_jasa" value="{{$layanan->biaya_layanan}}"
                             readonly>
                     </div>
@@ -45,9 +45,8 @@
                     </div>
                     <div class="mb-3">
                         <div class="form-label">Tanggal Waktu Kedatangan</div>
-                        <input type="time" class="form-control" name="waktu_kedatangan">
+                        <input type="time" class="form-control" name="waktu_kedatangan" min="10:00" max="16:00">
                     </div>
-
 
                     <button type="submit" class="btn btn-dark">Lakukan Penyewaan</button>
 
@@ -75,14 +74,22 @@
                     <div class="card-body">
                         <h4 class="card-title fw-bold">Deskripsi Layanan</h4>
                         <hr>
-                        <ul>
-                            <li>Layanan 1</li>
-                            <li>Layanan 2</li>
-                            <li>Layanan 3</li>
-                            <li>Layanan 4</li>
-
-                        </ul>
+                        <textarea class="form-control" cols="15" rows="3">{{$layanan->deskripsi_layanan}}</textarea>
                     </div>
+                </div>
+                <div class="card overflow-auto mt-3" style="height: 150px;">
+                    @foreach ($layanan->Ulasan as $ulasan)
+                     
+                    <div class="p-3">
+                        <div class="bg-light p-3 border">
+                            <span>Oleh : {{$ulasan->Transaksi->User->username}}</span> <br>
+                            <i class="fa fa-star text-warning d-inline" aria-hidden="true"></i> {{$ulasan->rating}}
+                            <p cl>{{$ulasan->comment}}</p>
+                        </div>
+                      
+
+                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

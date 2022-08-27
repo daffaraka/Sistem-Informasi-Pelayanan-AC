@@ -17,7 +17,11 @@ class CreateReviewsTable extends Migration
             $table->bigIncrements('id_review');
             $table->string('comment');
             $table->bigInteger('rating');
+            $table->unsignedBigInteger('id_layanan');
             $table->unsignedBigInteger('id_transaksi');
+
+            $table->foreign('id_layanan')->references('id_layanan')->on('layanans')
+            ->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('id_transaksi')->references('id_transaksi')->on('transaksis')
             ->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
